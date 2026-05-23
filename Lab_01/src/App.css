@@ -282,6 +282,11 @@ button:active {
 }
 
 
+.status-btn {
+  margin-left: 20px;
+}
+
+
 .dark-mode-btn {
   margin-top: 25px;
   background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);

@@ -1,6 +1,16 @@
-import { useState } from "react";
+import  { useState } from "react";
 import "./App.css";
 import avatar from "./assets/images.jpg";
+
+const HobbyList = ({ hobbies }) => {
+  return (
+    <ul>
+      {hobbies.map((hobby, index) => (
+        <li key={index}>{hobby}</li>
+      ))}
+    </ul>
+  );
+};
 
 function App() {
   const [isOnline, setIsOnline] = useState(true);
@@ -27,78 +37,52 @@ function App() {
   };
 
   return (
-
     <div className={darkMode ? "container dark" : "container"}>
-
       <div className={darkMode ? "card dark-card" : "card"}>
-
+        
         <div className="top-section"></div>
-
-        <img
-          src={avatar}
-          alt="Student Avatar"
-          className="avatar"
-        />
+        <img src={avatar} alt="Student Avatar" className="avatar" />
 
         <h2>Nguyen Hoang Tu</h2>
-
         <h3>Software Engineering</h3>
-
-        
 
         <p>
           <strong>Student ID:</strong> HE190852
         </p>
-
         <p>
           <strong>Class:</strong> FER202
         </p>
 
-        <p className="likes">
-           Total Likes: {likes}
-        </p>
-
-        <button onClick={handleLike}>
+        <p className="likes">Total Likes: {likes}</p>
+        
+        <button onClick={handleLike} type="button">
           Like for me
         </button>
 
         <h3>Hobbies</h3>
+        
+        <HobbyList hobbies={hobbies} />
 
-        <ul>
-          {
-            hobbies.map((hobby, index) => (
-              <li key={index}>
-                {hobby}
-              </li>
-            ))
-          }
-        </ul>
+        {isOnline ? (
+          <p className="online">Status: Online</p>
+        ) : (
+          <p className="offline">Status: Offline</p>
+        )}
 
-        {
-          isOnline ? (
-            <p className="online">
-              Status: Online
-            </p>
-          ) : (
-            <p className="offline">
-              Status: Offline
-            </p>
-          )
-        }
-
-        <button onClick={handleToggleStatus}>
+        <button onClick={handleToggleStatus} className="status-btn" type="button">
           Change Status
         </button>
 
-        <button
-          className="dark-mode-btn"
+        <button 
+          className="dark-mode-btn" 
           onClick={handleDarkMode}
+          style={{ marginLeft: "10px" }} 
+          type="button"
         >
           {darkMode ? "Light Mode" : "Dark Mode"}
         </button>
 
       </div>
-
     </div>
   );
 }
